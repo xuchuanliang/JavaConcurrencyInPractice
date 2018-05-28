@@ -2,6 +2,8 @@ package capter02.code;
 
 import javax.servlet.*;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class StatelesFactorizer implements Servlet {
     @Override
@@ -14,9 +16,10 @@ public class StatelesFactorizer implements Servlet {
         return null;
     }
 
+    private long count = 0;
+
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-
     }
 
     @Override
