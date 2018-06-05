@@ -5,6 +5,9 @@ import capter03.anno.ThreadSafe;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 封闭机制来确保线程安全
+ */
 @ThreadSafe
 public class PersonSet {
 
