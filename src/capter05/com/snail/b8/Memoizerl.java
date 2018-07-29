@@ -3,6 +3,7 @@ package capter05.com.snail.b8;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 缓存第一版,包装真实计算
@@ -19,7 +20,7 @@ public class Memoizerl <A,V>implements Computable<A,V> {
     }
 
     @Override
-    public synchronized V compute(A a) {
+    public synchronized V compute(A a) throws ExecutionException, InterruptedException {
         if(Objects.isNull(cache.get(a))){
             cache.put(a,computable.compute(a));
         }

@@ -2,6 +2,7 @@ package capter05.com.snail.b8;
 
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 缓存第二个版本，使用ConcurrentMap代替传统加锁方式，提高并发性
@@ -19,7 +20,7 @@ public class Memoizer2<A,V> implements Computable<A,V> {
     }
 
     @Override
-    public V compute(A a) {
+    public V compute(A a) throws ExecutionException, InterruptedException {
         if(Objects.isNull(concurrentHashMap.get(a))){
             concurrentHashMap.put(a,computable.compute(a));
         }
