@@ -61,7 +61,7 @@ ExecutorService将转入终止状态。可以调用awaitTermination来等待Exec
 - Runnable是一种有很大局限的抽象，虽然能够执行任务，但是不能返回一个值或者异常。
 - Callable是一种更好的抽象：他认为主入口点（即call）将返回一个值，并可能抛出一个异常。
 - Runnable和Callable描述的都是抽象的计算任务。
-- Future表示一个任务的生命周期，Future规范中包含的隐含意义是，任务的生命周期只能前进，不能后退。
+- Future表示一个任务的生命周期，Future规范中包含的，隐含意义是，任务的生命周期只能前进不能后退。
 - get方法的行为取决于任务的状态（尚未开始、正在运行、已完成）。如果任务已经完成，那么get会立即返回或者抛出一个Exception，如果任务没有完成，那么get将阻塞并直到任务完成。如果任务抛了异常，那么get将该异常封装为ExecutionException并
 重新抛出。如果任务被取消，那么get将抛出CancellationException。如果get抛出了ExecutionException，那么可以通过getCause来获得被封装的初始异常。
 - 可以通过多种方法创建一个Future来描述任务。ExecutorService中所有的submit方法都将返回一个Future，从而将一个Runnable或者Callable提交给Executor，并得到一个Future用来获得任务执行结果或者取消任务。还可以显示的为某个指定的Runnable或者Callable
