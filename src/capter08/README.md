@@ -26,3 +26,21 @@ ThreadLocal封闭-》使用ThreadLocal是实现线程封闭的最好方法，其
 方法，可以定制线程池的配置信息
 - 如果在应用程序中需要利用安全策略来控制对某些特殊代码的访问权限，那么可以通过Executor中的privilegedThreadFactory工厂来定制自己的线程工厂。通过这种方式创建出的线程，
 将与创建privilegedThreadFactory的线程拥有相同的访问权限、AccessControlContext和contextClassLoader。
+
+##扩展ThreadPoolExecutor
+- ThreadPollExecutor提供了beforeExecutor、afterExecutor和terminated
+- 在执行任务中的线程中将调用beforeExecutor和afterExecutor等方法，这些方法中还可以添加日志、
+计时、监视或统计信息收集的功能。无论任务是从run中正常返回，还是抛出一个异常而返回，afterExecutor都会被调用。（如果任务完成后带有一个Error，那么就不会调用
+afterExecutor。）如果beforeExecutor抛出一个RuntimeException，那么任务将不被执行，并且afterExecutor也不会被调用。
+- 在线程池完成关闭操作时调用terminated，也就是在所有的任务都已经完成并且所有工作者线程都已经关闭后。terminated可以用来释放Executor在其生命周期里分配的各种资源，
+此外还可以执行发送通知、记录日志或者收集finalize统计信息等操作。
+
+- ThreadLocal：作用是提供**线程内**的局部变量，这种变量在线程的声明周期内起作用，减少**同一个线程内**多个函数或者组件之间一些公共变量的传递的复杂度。一般情况是private static参见：https://www.zhihu.com/question/23089780
+
+##递归算法的并行化
+- 可以使用Executor将串行任务循环转化为并行任务
+- 当串行循环中的各个迭代操作之间彼此独立，并且每个迭代操作执行的工作量比管理一个新任务时带来的开销更多，那么这个串行循环就适合并行化。
+
+##总结
+- 对于并发任务，Executor是一个强大且灵活的框架，提供了大量可调节的选项，例如创建线程和关闭线程的策略，处理队列任务的策略，处理过多任务的策略（饱和策略），
+并且提供几个钩子方法来扩展他的行为。
