@@ -32,15 +32,13 @@ public class TransferMoney {
         if(fromHash<toHash){
             synchronized (fromAccount){
                 synchronized (toAccount){
-                    fromAccount.setBanlance(fromAccount.getBanlance()-amount);
-                    toAccount.setBanlance(toAccount.getBanlance()+amount);
+                    transferMoney(fromAccount,toAccount,amount);
                 }
             }
         }else if(fromHash>toHash){
             synchronized (toAccount){
                 synchronized (fromAccount){
-                    fromAccount.setBanlance(fromAccount.getBanlance()-amount);
-                    toAccount.setBanlance(toAccount.getBanlance()+amount);
+                    transferMoney(fromAccount,toAccount,amount);
                 }
             }
         }else{
@@ -48,8 +46,7 @@ public class TransferMoney {
             synchronized (tieLock){
                 synchronized (fromAccount){
                     synchronized (toAccount){
-                        fromAccount.setBanlance(fromAccount.getBanlance()-amount);
-                        toAccount.setBanlance(toAccount.getBanlance()+amount);
+                        transferMoney(fromAccount,toAccount,amount);
                     }
                 }
             }
