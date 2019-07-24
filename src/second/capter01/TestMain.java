@@ -13,7 +13,8 @@ public class TestMain {
 //        Thread thread = new MyThread();
 //        thread.start();
 //        test1();
-        test2();
+//        test2();
+        test3();
     }
     public static void test1(){
         for(int i=0;i<1000;i++){
@@ -47,5 +48,13 @@ public class TestMain {
                 }
             }).start();
         }
+    }
+
+    public static void test3(){
+        System.out.println("test gate");
+        Gate gate = new Gate();
+        new UserThread(gate,"ALice","ALice").start();
+        new UserThread(gate,"xcl","xcl").start();
+        new UserThread(gate,"zhanghexiang","zhanghexiang").start();
     }
 }
