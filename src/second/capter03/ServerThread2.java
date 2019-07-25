@@ -10,12 +10,12 @@ import java.util.Random;
  * @date 2019/7/2417:53
  * @Version
  */
-public class ServerThread extends Thread{
+public class ServerThread2 extends Thread{
 
     private final Random random;
-    private final RequestQueue requestQueue;
+    private final RequestQueue2 requestQueue;
 
-    public ServerThread(RequestQueue requestQueue,String name,long seed) {
+    public ServerThread2(RequestQueue2 requestQueue, String name, long seed) {
         super(name);
         this.random = new Random(seed);
         this.requestQueue = requestQueue;

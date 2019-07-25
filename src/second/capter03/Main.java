@@ -10,10 +10,9 @@ package second.capter03;
  */
 public class Main {
     public static void main(String[] args) {
-        RequestQueue requestQueue = new RequestQueue();
-        for(int i=0;i<100;i++){
-            new ServerThread(requestQueue, "Bob", 6535897L).start();
-            new ClientThread(requestQueue, "ALICE", 3141592L).start();
-        }
+//        RequestQueue requestQueue = new RequestQueue();
+        RequestQueue2 requestQueue = new RequestQueue2();
+        new ServerThread2(requestQueue, "Bob", 6535897L).start();
+        new ClientThread2(requestQueue, "ALICE", 3141592L).start();
     }
 }
