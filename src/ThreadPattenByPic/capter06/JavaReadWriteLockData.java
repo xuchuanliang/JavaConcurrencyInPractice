@@ -1,20 +1,24 @@
 package ThreadPattenByPic.capter06;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 /**
  * @author xuchuanliangbt
- * @title: Data
+ * @title: JavaReadWriteLock
  * @projectName JavaConcurrencyInPractice
- * @description:
- * @date 2019/7/2917:42
+ * @description:使用java读写锁实现Data
+ * @date 2019/7/3017:32
  * @Version
  */
-public class Data {
-
+public class JavaReadWriteLockData {
     private final char[] chars;
+    private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock(true);
+    private final Lock readLock = readWriteLock.readLock();
+    private final Lock writeLock = readWriteLock.writeLock();
 
-    private final ReadWriteLock readWriteLock = new ReadWriteLock();
-
-    public Data(int size){
+    public JavaReadWriteLockData(int size){
         chars = new char[size];
         for(int i=0;i<size;i++){
             chars[i] = '*';
@@ -26,12 +30,12 @@ public class Data {
      * @return
      * @throws InterruptedException
      */
-    public char[] read() throws InterruptedException {
-        readWriteLock.readLock();
+    public char[] read(){
+        readLock.lock();
         try{
-           return doRead();
+            return doRead();
         }finally {
-            readWriteLock.readUnLock();
+            readLock.unlock();
         }
     }
 
@@ -40,12 +44,12 @@ public class Data {
      * @param c
      * @throws InterruptedException
      */
-    public void write(char c) throws InterruptedException {
-        readWriteLock.writeLock();
+    public void write(char c){
+        writeLock.lock();
         try{
             doWrite(c);
         }finally {
-            readWriteLock.writeUnLock();
+            writeLock.unlock();
         }
     }
 
