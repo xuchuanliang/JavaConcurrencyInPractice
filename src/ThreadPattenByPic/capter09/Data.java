@@ -8,5 +8,6 @@ package ThreadPattenByPic.capter09;
  * @date 2019/8/116:46
  * @Version
  */
-public class Data {
+public interface Data {
+    String getContent();
 }
