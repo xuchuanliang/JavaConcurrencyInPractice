@@ -1,4 +1,4 @@
-package ThreadPattenByPic.capter09;
+package ThreadPattenByPic.capter09.my;
 
 /**
  * @author xuchuanliangbt
