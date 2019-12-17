@@ -7,11 +7,11 @@ public class VisibilityDemo {
         TimeConsumingTask timeConsumingTask = new TimeConsumingTask();
         Thread thread = new Thread(timeConsumingTask);
         thread.start();
-//        try {
-//            TimeUnit.SECONDS.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            TimeUnit.SECONDS.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         timeConsumingTask.cancel();
     }
 }

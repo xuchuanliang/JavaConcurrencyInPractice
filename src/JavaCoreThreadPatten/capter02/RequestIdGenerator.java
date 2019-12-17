@@ -15,7 +15,7 @@ public class RequestIdGenerator {
     private RequestIdGenerator(){
     }
 
-    public short nextSequence(){
+    public synchronized short nextSequence(){
         if(sequence >=SEQ_UPPER_LIMIT){
             sequence = 0;
         }else {
