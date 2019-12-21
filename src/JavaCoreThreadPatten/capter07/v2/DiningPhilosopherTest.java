@@ -1,5 +1,7 @@
 package JavaCoreThreadPatten.capter07.v2;
 
+import JavaCoreThreadPatten.capter07.DeadlockDetector;
+
 import java.util.List;
 
 /**
@@ -27,6 +29,8 @@ public class DiningPhilosopherTest extends AbstractTest{
     }
 
     public static void main(String[] args) {
+        //检测死锁服务
+        new DeadlockDetector(2).start();
         AbstractTest abstractTest = new DiningPhilosopherTest(2);
         abstractTest.run();
     }
